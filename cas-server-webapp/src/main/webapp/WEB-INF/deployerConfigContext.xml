@@ -88,7 +88,7 @@
     <!-- Required for proxy ticket mechanism. -->
     <bean id="proxyAuthenticationHandler"
           class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler"
-          p:httpClient-ref="supportsTrustStoreSslSocketFactoryHttpClient" />
+          p:httpClient-ref="supportsTrustStoreSslSocketFactoryHttpClient" p:requireSecure="false" />
 
     <!--
        | TODO: Replace this component with one suitable for your enviroment.
@@ -106,7 +106,7 @@
           class="org.jasig.cas.authentication.AcceptUsersAuthenticationHandler">
         <property name="users">
             <map>
-                <entry key="casuser" value="Mellon"/>
+                <entry key="zhangcheng" value="123456"/>
             </map>
         </property>
     </bean>
@@ -145,8 +145,28 @@
         </entry>
     </util:map>
 
+	<!--  
     <bean id="serviceRegistryDao" class="org.jasig.cas.services.JsonServiceRegistryDao"
           c:configDirectory="${service.registry.config.location:classpath:services}" />
+    -->      
+    <bean id="serviceRegistryDao" class="org.jasig.cas.services.InMemoryServiceRegistryDaoImpl" p:registeredServices-ref="registeredServicesList"/>  
+<util:list id="registeredServicesList">  
+    <bean class="org.jasig.cas.services.RegexRegisteredService">  
+        <property name="id" value="1"/>  
+        <property name="name" value="xxxxxx"/>  
+        <property name="description" value="sdfsdfsdf"/>  
+        <property name="serviceId" value="^(http?|https?|imaps?)://localhost:8081/dish/*"/>  
+        <property name="evaluationOrder" value="10000001"/>  
+    </bean>  
+    <bean class="org.jasig.cas.services.RegexRegisteredService">  
+        <property name="id" value="2"/>  
+        <property name="name" value="ssssss"/>  
+        <property name="description" value="sdfsdf"/>  
+        <property name="serviceId" value="^(http?|https?|imaps?)://121.42.154.244:8888/CasClient/*"/>  
+        <property name="evaluationOrder" value="10000002"/>  
+    </bean>  
+</util:list>  
+    
 
     <bean id="auditTrailManager" class="com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager" />
 

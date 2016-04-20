@@ -81,7 +81,7 @@
 		<transition on="generated" to="viewLoginForm" />
 	</action-state>
     
-	<view-state id="viewLoginForm" view="casLoginView" model="credential">
+	<view-state id="viewLoginForm" view="login" model="credential">
         <binder>
             <binding property="username" required="true" />
             <binding property="password" required="true"/>

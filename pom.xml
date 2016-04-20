@@ -244,69 +244,107 @@
                 <aggregate>true</aggregate>
             </configuration>
         </plugin>
+        <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                            <pluginExecution>
+                                <pluginExecutionFilter>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                    <artifactId>findbugs-maven-plugin</artifactId>
+                                    <versionRange>[1.0.0,)</versionRange>
+                                    <goals>
+                                      <goal>check</goal>
+                                    </goals>
+                                </pluginExecutionFilter>
+                                <action>
+                                    <execute />
+                                </action>
+                            </pluginExecution>
+                                </pluginExecutions>
+                            </lifecycleMappingMetadata>
+                     </configuration>
+            </plugin>  
+               <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                            <pluginExecution>
+                                <pluginExecutionFilter>
+                                      <groupId>org.apache.maven.plugins</groupId>
+				 <artifactId>maven-checkstyle-plugin</artifactId>
+                                    <versionRange>[1.0.0,)</versionRange>
+                                    <goals>
+                                      <goal>checkstyle</goal>
+                                    </goals>
+                                </pluginExecutionFilter>
+                                <action>
+                                    <execute />
+                                </action>
+                            </pluginExecution>
+                                </pluginExecutions>
+                            </lifecycleMappingMetadata>
+                     </configuration>
+            </plugin>  
+            
+             <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                            <pluginExecution>
+                                <pluginExecutionFilter>
+                                    <groupId>com.mycila.maven-license-plugin</groupId>
+                                    <artifactId>maven-license-plugin</artifactId>
+                                    <versionRange>[1.0.0,)</versionRange>
+                                    <goals>
+                                      <goal>check</goal>
+                                    </goals>
+                                </pluginExecutionFilter>
+                                <action>
+                                    <execute />
+                                </action>
+                            </pluginExecution>
+                                </pluginExecutions>
+                            </lifecycleMappingMetadata>
+                     </configuration>
+            </plugin> 
+             <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping </artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                            <pluginExecution>
+                                <pluginExecutionFilter>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                    <artifactId>aspectj-maven-plugin</artifactId>
+                                    <versionRange>[1.0.0,)</versionRange>
+                                    <goals>
+                                      <goal>check</goal>
+                                    </goals>
+                                </pluginExecutionFilter>
+                                <action>
+                                    <execute />
+                                </action>
+                            </pluginExecution>
+                                </pluginExecutions>
+                            </lifecycleMappingMetadata>
+                     </configuration>
+            </plugin>  
       </plugins>
     </pluginManagement>
 
     <plugins>
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>findbugs-maven-plugin</artifactId>
-            <version>${maven-findbugs-plugin.version}</version>
-            <configuration>
-                <plugins>
-                    <plugin>
-                        <groupId>com.mebigfatguy.fb-contrib</groupId>
-                        <artifactId>fb-contrib</artifactId>
-                        <version>${maven-findbugs-contrib-plugin.version}</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>com.h3xstream.findsecbugs</groupId>
-                        <artifactId>findsecbugs-plugin</artifactId>
-                        <version>${maven-findbugs-security-plugin.version}</version>
-                    </plugin>
-                </plugins>
-                <includeFilterFile>${cs.dir}/findbugs-rules.xml</includeFilterFile>
-                <effort>Max</effort>
-                <failOnError>true</failOnError>
-            </configuration>
-            <executions>
-                <execution>
-                    <id>findbugs-check</id>
-                    <phase>compile</phase>
-                    <goals>
-                        <goal>check</goal>
-                    </goals>
-                </execution>    
-            </executions>   
-        </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>${maven-checkstyle-plugin.version}</version>
-            <configuration>
-                <consoleOutput>true</consoleOutput>
-                <configLocation>${cs.dir}/checkstyle-rules.xml</configLocation>
-                <suppressionsLocation>${cs.dir}/checkstyle-suppressions.xml</suppressionsLocation>
-                <failsOnError>true</failsOnError>
-                <includeTestSourceDirectory>true</includeTestSourceDirectory>
-            </configuration>
-            <executions>
-                <execution>
-                   <id>checkstyle</id>
-                   <goals>
-                       <goal>checkstyle</goal>
-                   </goals>
-                   <phase>compile</phase>
-                </execution>
-            </executions>
-            <dependencies>
-               <dependency>
-                  <groupId>com.puppycrawl.tools</groupId>
-                  <artifactId>checkstyle</artifactId>
-                  <version>${checkstyle.version}</version>
-               </dependency>
-            </dependencies>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
@@ -350,25 +388,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>buildnumber-maven-plugin</artifactId>
-        <version>${maven-buildnumber-plugin-version}</version>
-        <executions>
-          <execution>
-            <phase>initialize</phase>
-            <goals>
-              <goal>create-timestamp</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <doCheck>false</doCheck>
-          <doUpdate>false</doUpdate>
-          <timestampFormat>EEE, d MMM yyyy HH:mm:ss Z</timestampFormat>
-          <timestampPropertyName>timestamp</timestampPropertyName>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
@@ -406,30 +425,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>aspectj-maven-plugin</artifactId>
-        <version>${maven-aspectj-plugin.version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <source>${project.build.sourceVersion}</source>
-          <target>${project.build.targetVersion}</target>
-          <complianceLevel>${project.build.sourceVersion}</complianceLevel>
-        </configuration>
-        <dependencies>
-          <dependency>
-              <groupId>org.aspectj</groupId>
-              <artifactId>aspectjtools</artifactId>
-              <version>${aspectj.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
         <configuration>
@@ -449,67 +444,7 @@
           </target>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>com.mycila.maven-license-plugin</groupId>
-        <artifactId>maven-license-plugin</artifactId>
-        <configuration>
-          <header>${cs.dir}/src/licensing/header.txt</header>
-          <skipExistingHeaders>true</skipExistingHeaders>
-          <strictCheck>true</strictCheck>
-          <headerDefinitions>
-            <headerDefinition>${cs.dir}/src/licensing/header-definitions.xml</headerDefinition>
-          </headerDefinitions>
-          <aggregate>true</aggregate>
-          <mapping>
-            <schema>SCRIPT_STYLE</schema>]
-            <ldif>SCRIPT_STYLE</ldif>
-            <yml>SCRIPT_STYLE</yml>
-            <conf>JAVADOC_STYLE</conf>
-          </mapping>
-          <excludes>
-            <exclude>**/bin/**</exclude>
-            <exclude>LICENSE</exclude>
-            <exclude>**/INSTALL*</exclude>
-            <exclude>**/NOTICE*</exclude>
-            <exclude>**/README*</exclude>
-            <exclude>**/readme*</exclude>
-            <exclude>**/*.log</exclude>
-            <exclude>**/*.license</exclude>
-            <exclude>**/*.txt</exclude>
-            <exclude>**/*.crt</exclude>
-            <exclude>**/*.cer</exclude>
-            <exclude>**/*.jks</exclude>
-            <exclude>**/*.crl</exclude>
-            <exclude>**/*.key</exclude>
-            <exclude>**/*.json</exclude>
-            <exclude>**/*.checkstyle</exclude>
-            <exclude>**/*.properties</exclude>
-            <exclude>**/.gitignore</exclude>
-            <exclude>**/overlays/**</exclude>
-            <exclude>src/licensing/**</exclude>
-            <exclude>**/testCA/**</exclude>
-            <exclude>**/.idea/**</exclude>
-            <exclude>**/*.keystore</exclude>
-            <exclude>**/*.example</exclude>
-            <exclude>**/*.jmx</exclude>
-            <exclude>**/*.pandoc</exclude>
-            <exclude>**/*.sample</exclude>
-            <exclude>**/*.doc</exclude>
-            <exclude>**/*.md</exclude>
-            <exclude>**/*.pdf</exclude>
-            <exclude>**/*.pem</exclude>
-            <exclude>**/*.p8</exclude>
-          </excludes>
-        </configuration>
-        <executions>
-            <execution>
-                <phase>compile</phase>
-                <goals>
-                    <goal>check</goal>
-                </goals>
-            </execution>
-        </executions>
-      </plugin>
+     
     </plugins>
   </build>
 
